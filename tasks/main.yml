@@ -1,0 +1,47 @@
+---
+- name: PIP install Python Packages
+  pip:
+    name: jupyterhub
+    executable: pip3
+
+- name: Install nodejs
+    yum:
+      name: nodejs
+
+- name: Install nodejs package n
+    npm:
+      name: n
+      version: latest
+
+- name: Install configurable-http-proxy
+  npm:
+      name: configurable-http-proxy
+      version: latest
+
+- name: jupyterhub config directory
+    file:
+      path: /etc/jupyterhub
+      state: directory
+
+#- name: jupyterhub config file
+#    template:
+#      src: templates/jupyterhub_config.py
+#      dest: /etc/jupyterhub/jupyterhub_config.py
+#    notify:
+#      - restart jupyterhub
+
+#- name: jupyterhub systemd service definition
+#    template:
+#      src: jupyterhub.service
+#     dest: /etc/systemd/system/jupyterhub.service
+#    notify:
+#      - restart jupyterhub
+
+
+####
+# Install R kernel for Jupyter
+# opt/anaconda/latest/bin/conda install r-essentials r-base rpy2
+# Maybe needed?!  conda install gxx_linux-64 -
+# yum install libXrender libXext
+# Maybe needed?! yum install readline-devel
+####
